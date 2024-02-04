@@ -21,6 +21,9 @@
     <canvas id="tutorial" width="300" height="300">
       你的浏览器不支持canvas，请升级你的浏览器
     </canvas>
+    <canvas id="tutorial1" width="300" height="300">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
   </body>
   <script type="text/javascript">
     const draw=()=>{
@@ -37,5 +40,18 @@
     ctx.fillRect(30,30,55,50)
     }
     draw()
+  </script>
+   <script type="text/javascript">
+    const draw1=()=>{
+      const canvas=document.getElementById("tutorial1")
+      if (!canvas.getContext) {
+          return
+      }
+    const ctx=canvas.getContext('2d')
+      ctx.fillRect(10,10,100,50)
+      ctx.strokeRect(10,70,100,50)
+      ctx.clearRect(15,15,50,25)
+    }
+    draw1()
   </script>
 </html>

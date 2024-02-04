@@ -1,0 +1,87 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="tutorial" width="300" height="300">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+    <canvas id="tutorial1" width="300" height="300">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+  </body>
+  <script type="text/javascript">
+    const draw=()=>{
+      const canvas=document.getElementById("tutorial")
+      if (!canvas.getContext) {
+          return
+      }
+      console.trace("cool")
+      // 绘制二次贝塞尔曲线
+      // quadraticCurveTo(cp1x,cp1y,x,y)
+      // 参数1和2：控制点坐标
+      // 参数3和4：结束点坐标
+    const ctx=canvas.getContext('2d')
+
+
+      const begin=[10,200]
+      const cp1x=40,cp1y=100//控制点1
+      const x=200,y=200//结束点
+
+      ctx.beginPath()
+      ctx.rect(...begin,10,10)
+      ctx.rect(cp1x,cp1y,10,10)
+      ctx.rect(x,y,10,10)
+      ctx.fill()
+
+      ctx.beginPath()
+      ctx.moveTo(...begin)// 起始点
+      // 绘制二次贝塞尔曲线
+      ctx.quadraticCurveTo(cp1x,cp1y,x,y)
+      ctx.stroke()
+
+    }
+    draw()
+  </script>
+  <script type="text/javascript">
+    const draw1=()=>{
+      const canvas=document.getElementById("tutorial1")
+      if (!canvas.getContext) {
+          return
+      }
+      console.trace("cool")
+      // 绘制三次贝塞尔曲线
+      // bezierCurveTo(cp1x,cp1y,x,y)
+      // 参数1和2：控制点1坐标
+      // 参数3和4：控制点2坐标
+      // 参数5和6：结束点坐标
+    const ctx=canvas.getContext('2d')
+
+
+      const begin=[40,200]
+      const cp1x=20,cp1y=100//控制点1
+      const cp2x=100,cp2y=120//控制点2
+      const x=200,y=200//结束点
+
+      ctx.beginPath()
+      ctx.rect(...begin,10,10)
+      ctx.rect(cp1x,cp1y,10,10)
+      ctx.rect(cp2x,cp2y,10,10)
+      ctx.rect(x,y,10,10)
+      ctx.fill()
+
+      ctx.beginPath()
+      ctx.moveTo(...begin)// 起始点
+      // 绘制三次贝塞尔曲线
+      ctx.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y)
+      ctx.stroke()
+
+    }
+    draw1()
+  </script>
+</html>
