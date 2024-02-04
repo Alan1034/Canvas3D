@@ -1,0 +1,56 @@
+<!-- @format -->
+
+<!--
+ * @Author: 陈德立*******419287484@qq.com
+ * @Date: 2024-02-04 17:58:27
+ * @LastEditTime: 2024-02-04 18:24:21
+ * @LastEditors: 陈德立*******419287484@qq.com
+ * @Github: https://github.com/Alan1034
+ * @Description: 
+ * @FilePath: \Canvas3D\triangle.html
+ * 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script type="text/javascript">
+    const webglInit=()=>{
+      const canvas = document.createElement('canvas'); // canvas 元素创建
+      canvas.width = document.body.clientWidth; // 设置 canvas 画布的宽度
+      canvas.height = document.body.clientHeight; // 设置 canvas 画布的高度
+      canvas.innerText="你的浏览器不支持canvas，请升级你的浏览器"
+      document.body.append(canvas); // 将创建好的 canvas 画布添加至页面中的 body 元素下
+      if (!canvas.getContext) {
+          return
+      }
+      if (!canvas.getContext("webgl")&&(!canvas.getContext("experimental-webgl"))) {
+        return;
+      }
+      console.trace("cool")
+      const context=(canvas.getContext("webgl"))?canvas.getContext("webgl"):canvas.getContext("experimental-webgl")
+      // 设置视口context.viewport(x,y,width,height)
+      // x:用来设定视口的左下角水平坐标。默认值：0
+      // y:用来设定视口的右下角垂直坐标。默认值：0
+      // width:用来设定视口的宽度。默认值：canvas的宽度
+      // height:用来设定视口的高度。默认值：canvas的高度
+      // 当你第一次创建 WebGL 上下文的时候，视口的大小和 canvas 的大小是匹配的。然而，如果你重新改变了canvas的大小，你需要告诉 WebGL 上下文设定新的视口，因此这里作为初次创建这行代码可以省略
+      context.viewport(0,0,context.canvas.width,context.canvas.height)
+      return context
+    }
+    const gl= webglInit()
+    console.log(gl)
+    const vShader=gl.createShader(gl.VERTEX_SHADER)
+    gl.shaderSource(vShader,`
+     attribute vec4 v_position;
+     void main() {
+      gl_Position = v_position; // 设置顶点位置
+     }
+    `)
+    
+  </script>
+</html>
