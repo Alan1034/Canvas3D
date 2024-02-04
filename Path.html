@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="tutorial" width="300" height="300">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+  </body>
+  <script type="text/javascript">
+    const draw=()=>{
+      const canvas=document.getElementById("tutorial")
+      if (!canvas.getContext) {
+          return
+      }
+      console.trace("cool")
+    const ctx=canvas.getContext('2d')
+      ctx.beginPath();// 新建一条path
+      ctx.moveTo(50,50);// 把画笔移动到指定的坐标
+      ctx.lineTo(200,50)//绘制一条从当前位置到指定坐标（200,50)的直线
+      ctx.lineTo(200,200)
+      // 闭合路径。会拉一条从当前点到path起始点的直线。如果当前点与起始点重合，则什么都不做
+      // 虽然我们只绘制了两条线段，但closePath会closePath，仍然是一个三角形
+      ctx.closePath();
+      ctx.fill()// 填充闭合区域。如果Path没有闭合，则fill()会自动闭合路径
+      ctx.stroke()// 绘制路径
+    }
+    draw()
+  </script>
+</html>

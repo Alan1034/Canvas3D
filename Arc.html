@@ -1,0 +1,61 @@
+<!-- @format -->
+
+<!--
+ * @Author: 陈德立*******419287484@qq.com
+ * @Date: 2024-02-04 15:08:25
+ * @LastEditTime: 2024-02-04 15:18:55
+ * @LastEditors: 陈德立*******419287484@qq.com
+ * @Github: https://github.com/Alan1034
+ * @Description: 
+ * @FilePath: \Canvas3D\Arc.html
+ * 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="tutorial" width="300" height="300">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+  </body>
+  <script type="text/javascript">
+    const draw=()=>{
+      const canvas=document.getElementById("tutorial")
+      if (!canvas.getContext) {
+          return
+      }
+      console.trace("cool")
+    const ctx=canvas.getContext('2d')
+    // arc(x,y,r,startAngle,endAngle,anticlockwise):以(x,y)为核心,r为半径，从startAngle弧度开始到endAngle弧度结束。anticlosewise是布尔值，true表示逆时针，false表示顺时针（默认是顺时针）
+    // 注：
+    // 1.这里的度数都是弧度
+    // 2.0弧度是指的X轴正方向
+    // radians=(Math.PI/180)*degrees //角度转换成弧度
+
+    // arcTo(x1,y1,x2,y2,radius):根据给定的控制点和半径画一段圆弧，最后再以直线连接两个控制点。
+
+    ctx.beginPath()
+    ctx.arc(50,50,40,0,Math.PI/2,false)
+    ctx.stroke()
+
+    ctx.beginPath()
+    ctx.arc(150,50,40,0,-Math.PI/2,true)
+    ctx.closePath()
+    ctx.stroke()
+
+    ctx.beginPath()
+    ctx.arc(50,150,40,-Math.PI/2,Math.PI/2,false)
+    ctx.fill()
+
+    ctx.beginPath()
+    ctx.arc(150,150,40,0,Math.PI,false)
+    ctx.fill()
+
+    }
+    draw()
+  </script>
+</html>

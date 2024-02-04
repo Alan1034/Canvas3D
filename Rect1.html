@@ -1,0 +1,38 @@
+<!-- @format -->
+
+<!--
+ * @Author: 陈德立*******419287484@qq.com
+ * @Date: 2024-02-04 10:55:20
+ * @LastEditTime: 2024-02-04 11:16:00
+ * @LastEditors: 陈德立*******419287484@qq.com
+ * @Github: https://github.com/Alan1034
+ * @Description: 
+ * @FilePath: \Canvas3D\rect.html
+ * 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="tutorial" width="300" height="300">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+  </body>
+  <script type="text/javascript">
+    const draw=()=>{
+      const canvas=document.getElementById("tutorial")
+      if (!canvas.getContext) {
+          return
+      }
+    const ctx=canvas.getContext('2d')
+      ctx.fillRect(10,10,100,50)
+      ctx.strokeRect(10,70,100,50)
+      ctx.clearRect(15,15,50,25)
+    }
+    draw()
+  </script>
+</html>
