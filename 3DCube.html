@@ -1,0 +1,118 @@
+<!-- @format -->
+
+<!--
+ * @Author: 陈德立*******419287484@qq.com
+ * @Date: 2024-02-04 17:58:27
+ * @LastEditTime: 2024-02-05 16:59:20
+ * @LastEditors: 陈德立*******419287484@qq.com
+ * @Github: https://github.com/Alan1034
+ * @Description: 
+ * @FilePath: \Canvas3D\3DCube.html
+ * 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style type="text/css">
+      div#canvas-frame {
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        height: 600px;
+        background-color: #EEEEEE;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@v0.161.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@v0.161.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="canvas-frame"></div>
+  </body>
+  <script type="module">
+      import * as THREE from 'three';
+      let renderer //渲染器对象
+      const width=document.getElementById("canvas-frame").clientWidth
+      const height=document.getElementById("canvas-frame").clientHeight
+      const initThree=()=>{
+      // 新建一个WEBGL渲染器
+      renderer=new THREE.WebGLRenderer({
+        antialias:true
+      })
+      // 设置画布大小
+      renderer.setSize(width,height)
+      // 将画布元素挂载到页面
+      document.getElementById("canvas-frame").appendChild(renderer.domElement)
+      // 清空画布颜色为白色
+      renderer.setClearColor(0xFFFFFF,1,0)
+    }
+    // 相机对象
+    let camera
+
+    const initCamera=()=>{
+      // 创建一个相机
+    //   PerspectiveCamera( fov : Number, aspect : Number, near : Number, far : Number )
+    // fov - 视角
+    // aspect - 物体的长宽比
+    // near - 相机近点截图
+    // far - 相机远点截图
+      camera=new THREE.PerspectiveCamera(45,width/height,1,10000)
+      // 设置相机在三维空间中的坐标
+      camera.position.x=0
+      camera.position.y=0
+      camera.position.z=5
+
+      // up属性我们可以理解为哪一根坐标轴朝上，这里是z的正方向
+      camera.up.x=0
+      camera.up.y=0
+      camera.up.z=1
+      camera.lookAt(new THREE.Vector3(0,0,0)) //设置相机的观察点
+    }
+
+    // 存储场景对象
+    let scene
+    const initScene=()=>{
+      scene = new THREE.Scene()
+    }
+
+    // 存放几何立方体
+    let cube
+    const initObject=()=>{
+      // 创基一个几何类的实例
+      const geometry=new THREE.BoxGeometry(1,1,1)
+      // 创建一种材质实例
+      const material=new THREE.MeshBasicMaterial({color:0x00ff00})
+      // Mesh 是一种三角形网格基本单元的构造函数，类似于原生WebGL中的片元着色器，用于连接几何体和材质
+      cube=new THREE.Mesh(geometry,material)
+      // 将几何立方体添加到场景
+      scene.add(cube)
+    }
+
+        // 提供浏览器的循环渲染功能
+    const render=()=>{
+      cube.rotation.x+=0.005
+      cube.rotation.y+=0.005
+      renderer.render(scene,camera)
+      requestAnimationFrame(render)
+    }
+
+    const threeStart=()=>{
+      initThree()
+      initCamera()
+      initScene()
+      initObject()
+      render()
+    }
+    document.addEventListener("DOMContentLoaded",()=>{
+      threeStart()
+    })
+  </script>
+</html>
