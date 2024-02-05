@@ -1,0 +1,65 @@
+<!-- @format -->
+
+<!--
+ * @Author: 陈德立*******419287484@qq.com
+ * @Date: 2024-02-05 17:58:53
+ * @LastEditTime: 2024-02-05 18:13:09
+ * @LastEditors: 陈德立*******419287484@qq.com
+ * @Github: https://github.com/Alan1034
+ * @Description: 
+ * @FilePath: \Canvas3D\Style.html
+ * 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="tutorial" width="300" height="300">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+    <canvas id="tutorial1" width="300" height="300">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+  </body>
+  <script type="text/javascript">
+    const draw=()=>{
+      const canvas=document.getElementById("tutorial")
+      if (!canvas.getContext) {
+          return
+      }
+      console.trace("cool")
+    const ctx=canvas.getContext('2d')
+    for (let i = 0; i < 6; i++) {
+      for (let j = 0; j < 6; j++) {
+        ctx.fillStyle=`rgb(${Math.floor(255-42.5*i)},${Math.floor(255-42.5*j)},0)`
+        ctx.fillRect(j*50,i*50,50,50)
+      }
+    }
+    }
+    draw()
+  </script>
+  <script type="text/javascript">
+    const draw1=()=>{
+      const canvas=document.getElementById("tutorial1")
+      if (!canvas.getContext) {
+          return
+      }
+    const ctx=canvas.getContext('2d')
+    for (let i = 0; i < 6; i++) {
+      for (let j = 0; j < 6; j++) {
+        // ctx.strokeStyle=`rgb(${Math.floor(255-42.5*i)},${Math.floor(255-42.5*j)},0)`
+        ctx.strokeStyle=`rgb(${randomInt(255,0)},${randomInt(255,0)},${randomInt(255,0)})`
+        ctx.strokeRect(j*50,i*50,40,40)
+      }
+    }
+    }
+    const randomInt=(from,to)=>{
+      return parseInt(Math.random()*(to-from+1)+from)
+    }
+    draw1()
+  </script>
+</html>
