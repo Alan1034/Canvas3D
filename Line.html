@@ -1,0 +1,123 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="tutorial" width="300" height="300">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+    <canvas id="tutorial1" width="300" height="300">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+    <canvas id="tutorial2" width="300" height="300">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+    <canvas id="tutorial3" width="300" height="300">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+  </body>
+  <script type="text/javascript">
+    const draw=()=>{
+      const canvas=document.getElementById("tutorial")
+      if (!canvas.getContext) {
+          return
+      }
+      console.trace("cool")
+      const ctx=canvas.getContext('2d')
+      ctx.beginPath()
+      ctx.moveTo(10,10)
+      ctx.lineTo(100,10)
+      ctx.lineWidth=10
+      ctx.stroke()
+
+      ctx.beginPath()
+      ctx.moveTo(110,10)
+      ctx.lineTo(160,10)
+      ctx.lineWidth=20
+      ctx.stroke()
+    }
+    draw()
+  </script>
+  <script type="text/javascript">
+    const draw1=()=>{
+      const canvas=document.getElementById("tutorial1")
+      if (!canvas.getContext) {
+          return
+      }
+      console.trace("cool")
+      const ctx=canvas.getContext('2d')
+      // 线条末端样式
+      // butt 方形结束
+      // round 圆形结束
+      // square 以方形结束，但是增加了一个宽度与线段相同，高度是线段厚度一半的矩形区域
+      const lineCaps=["butt","round","square"]
+      for (let index = 0; index < 3; index++) {
+       ctx.beginPath()
+       ctx.moveTo(20+30*index,30)
+       ctx.lineTo(20+30*index,100)
+       ctx.lineWidth=20
+       ctx.lineCap=lineCaps[index]
+       ctx.stroke()
+      }
+
+      ctx.beginPath()
+      ctx.moveTo(0,30)
+      ctx.lineTo(300,30)
+
+      ctx.moveTo(0,100)
+      ctx.lineTo(300,100)
+
+      ctx.strokeStyle="red"
+      ctx.lineWidth=1
+      ctx.stroke()
+    }
+    draw1()
+  </script>
+  <script type="text/javascript">
+    const draw2=()=>{
+      const canvas=document.getElementById("tutorial2")
+      if (!canvas.getContext) {
+          return
+      }
+      console.trace("cool")
+      const ctx=canvas.getContext('2d')
+      // 设定线条与线条间接合处的样式
+      // round 填充一个额外的，圆心在相连部分末端的扇形， 绘制拐角的形状。圆角的半径是线段的宽度
+      // bevel 填充一个额外的三角形为底
+      // miter(默认)通过延伸相连部分的外边缘，使其交于一点，形成一个额外的菱形区域
+      const lineJoins=["round","bevel","miter"]
+      ctx.lineWidth=20
+      for (let i = 0; i < lineJoins.length; i++) {
+        ctx.lineJoin=lineJoins[i]
+        ctx.beginPath()
+        ctx.moveTo(50,50+i*50)
+        ctx.lineTo(100,100+i*50)
+        ctx.lineTo(150,50+i*50)
+        ctx.lineTo(200,100+i*50)
+        ctx.lineTo(250,50+i*50)
+        ctx.stroke()
+      }
+    }
+    draw2()
+  </script>
+  <script type="text/javascript">
+    const draw3=()=>{
+      const canvas=document.getElementById("tutorial3")
+      if (!canvas.getContext) {
+          return
+      }
+      console.trace("cool")
+      const ctx=canvas.getContext('2d')
+    
+      ctx.setLineDash([20,5])// [实线长度，间隙长度]
+      ctx.lineDashOffset=0
+      ctx.strokeRect(50,50,210,210)
+    }
+    draw3()
+  </script>
+</html>
