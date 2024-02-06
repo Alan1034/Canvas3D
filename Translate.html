@@ -1,0 +1,106 @@
+<!-- @format -->
+
+<!--
+ * @Author: 陈德立*******419287484@qq.com
+ * @Date: 2024-02-06 17:10:54
+ * @LastEditTime: 2024-02-06 17:56:46
+ * @LastEditors: 陈德立*******419287484@qq.com
+ * @Github: https://github.com/Alan1034
+ * @Description: 
+ * @FilePath: \Canvas3D\Translate.html
+ * 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="tutorial" width="320" height="320">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+    <canvas id="tutorial1" width="320" height="320">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+    <canvas id="tutorial2" width="320" height="320">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+  </body>
+  <script type="text/javascript">
+    const draw=()=>{
+      const canvas=document.getElementById("tutorial")
+      if (!canvas.getContext) {
+          return
+      }
+      console.trace("cool")
+      const ctx=canvas.getContext('2d')
+      // translate移动canvas的原点到指定的位置
+      ctx.save(); //保存坐标原点平移之前的状态
+      ctx.translate(100,100)
+      ctx.strokeRect(0,0,100,100)
+      ctx.restore() //恢复
+      ctx.translate(220,220)
+      ctx.fillRect(0,0,100,100)
+    }
+    draw()
+  </script>
+  <script type="text/javascript">
+    const draw1=()=>{
+      const canvas=document.getElementById("tutorial1")
+      if (!canvas.getContext) {
+          return
+      }
+      console.trace("cool")
+      const ctx=canvas.getContext('2d')
+      // rotate(angle)，旋转坐标轴，angle:顺时针旋转的角度
+      ctx.fillStyle="red"
+      ctx.save()
+
+      ctx.translate(100,100)
+      ctx.rotate(Math.PI/180*45)
+      ctx.fillStyle="blue"
+      ctx.fillRect(0,0,100,100)
+      ctx.restore()
+
+      ctx.fillRect(0,0,50,50)
+    }
+    draw1()
+  </script>
+  <!-- scale(x, y) -->
+  <script type="text/javascript">
+    const draw2=()=>{
+      const canvas=document.getElementById("tutorial2")
+      if (!canvas.getContext) {
+          return
+      }
+      console.trace("cool")
+      const ctx=canvas.getContext('2d')
+      // transform(a,b,c,d,e,f) 变形矩阵
+      
+      // https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/getTransform
+      // a (m11)
+      // 水平方向的缩放
+
+      // b(m12)
+      // 竖直方向的倾斜偏移
+
+      // c(m21)
+      // 水平方向的倾斜偏移
+
+      // d(m22)
+      // 竖直方向的缩放
+
+      // e(dx)
+      // 水平方向的移动
+
+      // f(dy)
+      // 竖直方向的移动
+      //重置：1, 0, 0, 1, 0, 0
+      ctx.transform(1, 0, 0, 1, 0, 0)
+      ctx.fillRect(0,0,100,100)
+    }
+    draw2()
+  </script>
+</html>

@@ -1,0 +1,45 @@
+<!-- @format -->
+
+<!--
+ * @Author: 陈德立*******419287484@qq.com
+ * @Date: 2024-02-06 15:02:28
+ * @LastEditTime: 2024-02-06 15:22:43
+ * @LastEditors: 陈德立*******419287484@qq.com
+ * @Github: https://github.com/Alan1034
+ * @Description: 
+ * @FilePath: \Canvas3D\Image.html
+ * 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="tutorial" width="497" height="1010">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+  </body>
+  <script type="text/javascript">
+    const draw=()=>{
+      const canvas=document.getElementById("tutorial")
+      if (!canvas.getContext) {
+          return
+      }
+      console.trace("cool")
+    const ctx=canvas.getContext('2d')
+    const img=new Image()
+    img.onload=()=>{
+      // 参数1：要绘制的img
+      // 参数2、3：绘制的img在canvas中的坐标
+      // 参数4、5：width,height 画入时缩放的大小
+      // 参数6、7、8、9：2-5定义图像源切片的大小，后四个定义切片显示位置和大小
+      ctx.drawImage(img,0,0,894,1920,50,50,447,960)
+    }
+    img.src="./QQ图片20240205170638.jpg"
+    }
+    draw()
+  </script>
+</html>

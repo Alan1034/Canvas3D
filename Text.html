@@ -1,0 +1,29 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="tutorial" width="500" height="300">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+  </body>
+  <script type="text/javascript">
+    const draw=()=>{
+      const canvas=document.getElementById("tutorial")
+      if (!canvas.getContext) {
+          return
+      }
+      console.trace("cool")
+    const ctx=canvas.getContext('2d')
+    ctx.font="100px sans-serif"
+    ctx.fillText("天若有情",10,100)
+    ctx.strokeText("天若有情",10,200)
+    }
+    draw()
+  </script>
+</html>
