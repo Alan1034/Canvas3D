@@ -1,0 +1,40 @@
+<!--
+ * @Author: 陈德立*******419287484@qq.com
+ * @Date: 2024-02-07 10:25:40
+ * @LastEditTime: 2024-02-07 10:46:23
+ * @LastEditors: 陈德立*******419287484@qq.com
+ * @Github: https://github.com/Alan1034
+ * @Description: 
+ * @FilePath: \Canvas3D\Composite.html
+ * 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="tutorial" width="300" height="300">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+  </body>
+  <script type="text/javascript">
+    const draw=()=>{
+      const canvas=document.getElementById("tutorial")
+      if (!canvas.getContext) {
+          return
+      }
+      console.trace("cool")
+    const ctx=canvas.getContext('2d')
+    ctx.fillStyle="blue"
+    ctx.fillRect(0,0,200,200)
+    
+    ctx.globalCompositeOperation="lighter" // 全局合成操作，有多种属性可选
+    ctx.fillStyle="red"
+    ctx.fillRect(100,100,200,200)
+    }
+    draw()
+  </script>
+</html>

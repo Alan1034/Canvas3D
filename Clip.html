@@ -1,0 +1,42 @@
+<!--
+ * @Author: 陈德立*******419287484@qq.com
+ * @Date: 2024-02-07 14:59:05
+ * @LastEditTime: 2024-02-07 15:00:43
+ * @LastEditors: 陈德立*******419287484@qq.com
+ * @Github: https://github.com/Alan1034
+ * @Description: 
+ * @FilePath: \Canvas3D\Clip.html
+ * 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="tutorial" width="300" height="300">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+  </body>
+  <script type="text/javascript">
+    const draw=()=>{
+      const canvas=document.getElementById("tutorial")
+      if (!canvas.getContext) {
+          return
+      }
+      console.trace("cool")
+      const ctx=canvas.getContext('2d')
+      
+      ctx.beginPath()
+      ctx.arc(20,20,100,0,Math.PI*2)
+      // 把已创建的路径转换成裁剪路径，作用是遮罩，只显示裁剪路径内的区域，裁剪路径外的区域会被隐藏
+      ctx.clip()
+
+      ctx.fillStyle="pink"
+      ctx.fillRect(20,20,100,100)
+    }
+    draw()
+  </script>
+</html>

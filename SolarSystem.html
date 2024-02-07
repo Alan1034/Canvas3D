@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="tutorial" width="300" height="300">
+      你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+  </body>
+  <script type="text/javascript">
+    let sun
+    let earth
+    let moon
+    let ctx
+    const init=()=>{
+      sun =new Image()
+      earth=new Image()
+      moon=new Image()
+      sun.src="sun.jpeg"
+      earth.src="earth.webp"
+    }
+    const draw=()=>{
+      const canvas=document.getElementById("tutorial")
+      if (!canvas.getContext) {
+          return
+      }
+      console.trace("cool")
+      const ctx=canvas.getContext('2d')
+      
+    }
+    draw()
+  </script>
+</html>
