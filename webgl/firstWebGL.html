@@ -31,7 +31,7 @@
   // gl_Position表示顶点的位置，值是四维向量vec4,比如表示(x,y,z)坐标，书写形式是vec4(x,y,z,1.0),按照语法规定，前面三个参数表示xyz坐标，最后一个参数是1.0。
 
   void main(){
-    gl_PointSize=20.0;
+    gl_PointSize=30.0;
     gl_Position =vec4(0.0,0.0,0.0,1.0);
   }
 </script>
@@ -42,7 +42,7 @@
   // <!-- gl_FragColor的值是四维向量vec4，前面三个参数是颜色RGB值，第四个参数是透明度值 -->
 
   void main(){
-    gl_FragColor = vec4(1.0,0.0,0.0,1.0);
+    gl_FragColor = vec4(1.0,1.0,0.0,1.0);
   }
 </script>
 <script>
