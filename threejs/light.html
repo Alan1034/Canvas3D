@@ -1,7 +1,7 @@
 <!--
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2024-07-04 10:31:27
- * @LastEditTime: 2024-07-04 17:50:47
+ * @LastEditTime: 2024-07-04 18:16:28
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description: 
@@ -39,11 +39,10 @@
   // 创建一个长方体几何对象Geometry
   const geometry = new THREE.BoxGeometry(100, 100, 100)
 
-  // 材质Material
-  const material = new THREE.MeshBasicMaterial({
-    // 设置材料颜色
-    color: 0xff000
-  })
+  // MeshLamberMaterial受光照影响,该材质也可称为Lambert网格材质，音译为兰伯特网格材质
+  const material = new THREE.MeshLambertMaterial({     // 设置材料颜色
+    color: 0x000ff,
+  });
   // 物体：网格模型
   // 两个参数分别为几何体geometry、材质material
   const mesh = new THREE.Mesh(geometry, material)// 网格模型对象Mesh
@@ -51,6 +50,16 @@
   mesh.position.set(0, 10, 0)
   // 把网格模型mesh添加到三维场景中
   scene.add(mesh)
+  // 点光源：两个参数分别代表光源颜色和光照强度
+  const pointLight = new THREE.PointLight(0xffffff, 50000.0);
+  // 直接访问光照强度属性并设置
+  // pointLight.intensity = 8000;//光照强度
+  // 光源衰减，默认2.0
+  pointLight.decay=1.5
+  // 点光源位置
+  pointLight.position.set(400, 200, 200)
+  // 光源添加到场景
+  scene.add(pointLight)
   // canvas的尺寸
   const width = 800
   const height = 500
