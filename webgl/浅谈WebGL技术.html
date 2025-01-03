@@ -1,0 +1,107 @@
+<!--
+ * @Author: 陈德立*******419287484@qq.com
+ * @Date: 2025-01-02 10:20:10
+ * @LastEditTime: 2025-01-03 11:21:31
+ * @LastEditors: 陈德立*******419287484@qq.com
+ * @Github: https://github.com/Alan1034
+ * @Description: 
+ * @FilePath: \Canvas3D\webgl\浅谈WebGL技术.html
+ * 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+  <title>浅谈WebGL技术.html</title>
+</head>
+
+<body>
+  <canvas id="webgl" width="500" height="500" style="background: #000;"></canvas>
+</body>
+<!--
+ * 顶点着色器的作用是计算顶点的位置，根据计算出的一系列顶点位置，WebGL可以对点，线和三角形在内的
+ 一些图元进行光栅化处理。WebGL中显示的物体由一系列顶点组成，每个顶点都有位置和颜色等信息，在默认情况下，
+ 所有像素的颜色都由线性插值计算得来，自动形成平滑渐变
+
+ 下面是顶点着色器的示例代码，顶点着色器通过a_Position、a_PointSize分别接收并设置顶点的位置和大小，通过
+ a_Color从程序获取颜色并通过v_Color传递给片元着色器。其中，gl_Position和gl_PointSize是着色器的内置变量，
+ 分别代表顶点的位置和大小，因此这段代码的作用是设置顶点的位置和大小，同时接收程序传入的颜色a_Color并把它传递给片元着色器。
+
+ 在着色器内，一般命名以gl_开头的变量是着色器的内置变量，除此之外webgl_和_webgl还是着色器保留字，自定义变量不能以
+ webgl_或_webgl开头。变量声明一般包含<存储限定符><数据类型><变量名称>，以attribute vec4 a_Position为例，
+ attribute表示存储限定符，vec是数据类型，a_Position为变量名称。
+ * 
+-->
+<script id="vertexShader" type="x-shader/x-vertex">
+  const vs_soure =`
+    attribute vec4 a_Position;
+    attribute float a_PointSize;
+    attribute vec4 a_Color;
+    varying vec4 v_Color;
+    void main(){
+      gl_Position=a_Position;
+      gl_PointSize=a_PointSize;
+      v_Color=a_Color;
+    }
+  `
+</script>
+<!--
+ * 片元着色器的作用是计算出当前绘制图元中每个像素的颜色值，逐片元控制片元的颜色和纹理等渲染。关于片元，片元包含颜色
+ 、深度和纹理等信息，片元相对像素多出许多信息，从直观表现上看两者都是像素点。关于图元，图元是指WebGL中可以直接绘制
+ 的7种基本图形，它们分别是：
+
+ 孤立点：gl.POINTS
+ 孤立线段：gl.LINES
+ 连续线段：gl.LINE_STRIP
+ 连续线圈：gl.LINE_LOOP
+ 孤立三角形：gl.TRIANGLES
+ 三角带：gl.TRIANGLE_STRIP
+ 三角扇：gl.TRIANGLE_FAN
+
+ * 
+-->
+<script id="fragmentShader" type="x-shader/x-fragment">
+  
+</script>
+<script>
+  const canvas = document.getElementById("webgl")
+  const gl = canvas.getContext("webgl");
+  //顶点着色器源码
+  var vertexShader = document.getElementById('vertexShader').innerText;
+  //片元着色器源码
+  var fragmentShader = document.getElementById('fragmentShader').innerText;
+
+  // 初始化着色器
+  const program = initShader(gl, vertexShader, fragmentShader)
+  // 开始绘制
+  gl.drawArrays(gl.POINTS, 0, 1)
+  //声明初始化着色器函数
+  function initShader(gl, vertexShaderSource, fragmentShaderSource) {
+    //创建顶点着色器对象
+    const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+    //创建片元着色器对象
+    const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+    //引入顶点、片元着色器源代码
+    gl.shaderSource(vertexShader, vertexShaderSource);
+    gl.shaderSource(fragmentShader, fragmentShaderSource);
+    //编译顶点、片元着色器
+    gl.compileShader(vertexShader);
+    gl.compileShader(fragmentShader)
+    //创建程序对象program
+    const thisprogram = gl.createProgram();
+    //附着顶点着色器和片元着色器到program
+    gl.attachShader(thisprogram, vertexShader);
+    gl.attachShader(thisprogram, fragmentShader);
+    //链接program
+    gl.linkProgram(thisprogram);
+    //使用program
+    gl.useProgram(thisprogram);
+    //返回程序program对象
+    return thisprogram;
+  }
+</script>
+</html>
